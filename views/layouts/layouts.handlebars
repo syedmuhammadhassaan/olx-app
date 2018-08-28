@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {{!--
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+
+
+    <link rel="shortcut icon" href="/images/icons/icon-72x72.png">
+    <!-- Add manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <!-- Tell the browser it's a PWA -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Tell iOS it's a PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Make sure theme-color is defined -->
+    <meta name="theme-color" content="#536878">
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+
+                    </li>
+                    {{#if user}}
+                    <li role="presentation">
+                        <a href="/">Dashboard</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="/users/logout">Logout</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="/users/register">property</a>
+                    </li>
+                    {{else}}
+                    <li role="presentation">
+                        <a href="/users/login">Login</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="/users/register">register</a>
+                    </li>
+                    {{/if}}
+
+
+                </ul>
+            </nav>
+            <h3 class="text-muted">OLX</h3>
+        </div>
+
+
+        <div class="row">
+            {{#if success_msg}}
+            <div class="alert alert-success">{{success_msg}}</div>
+            {{/if}} {{#if error_msg}}
+            <div class="alert alert-danger">{{error_msg}}</div>
+            {{/if}} {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+            {{/if}} {{{body}}}
+            <div class="col-lg-12">
+
+            </div>
+
+
+
+            <footer class="footer">
+                <p>&copy; 2018 OLX </p>
+            </footer>
+
+        </div>
+
+</body>
+
+<script src="/serviceindex.js"></script>
+
+</html>
