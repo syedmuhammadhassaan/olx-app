@@ -7,9 +7,10 @@ var multer = require("multer");
 var GridFsStorage = require("multer-gridfs-storage");
 var User = require("../models/user");
 var crypto = require("crypto");
-
+var mongodbUri = "mongodb://hassan:hassan123@ds135952.mlab.com:35952/loginapp";
 var storage = new GridFsStorage({
-  url: "mongodb://localhost/loginapp",
+  // url: "mongodb://localhost/loginapp",
+  url: mongodbUri,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
