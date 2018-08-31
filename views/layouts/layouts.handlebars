@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> {{!--
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
-    <title>Document</title>
+    <title>Free Classified Ad for Houses in Pakistan</title>
     <link rel="stylesheet" href="/public/css/bootstrap.css" />
     <link rel="stylesheet" href="/public/css/style.css" />
-
-
     <link rel="shortcut icon" href="/images/icons/icon-72x72.png">
     <!-- Add manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -17,7 +15,9 @@
     <!-- Tell iOS it's a PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- Make sure theme-color is defined -->
-    <meta name="theme-color" content="#536878">
+    {{!--
+    <meta name="theme-color" content="#536878"> --}}
+
 </head>
 
 
@@ -34,11 +34,10 @@
                     </li>
                     <li role="presentation">
                         <a href="/users/logout">Logout</a>
-                    </li>
+                        {{!-- </li>
                     <li role="presentation">
                         <a href="/users/register">property</a>
-                    </li>
-                    {{else}}
+                    </li> --}} {{else}}
                     <li role="presentation">
                         <a href="/users/login">Login</a>
                     </li>
@@ -50,32 +49,56 @@
 
                 </ul>
             </nav>
-            <h3 class="text-muted">OLX</h3>
-        </div>
-
-
-        <div class="row">
-            {{#if success_msg}}
-            <div class="alert alert-success">{{success_msg}}</div>
-            {{/if}} {{#if error_msg}}
-            <div class="alert alert-danger">{{error_msg}}</div>
-            {{/if}} {{#if error}}
-            <div class="alert alert-danger">{{error}}</div>
-            {{/if}} {{{body}}}
-            <div class="col-lg-12">
-
+            <div>
+                <img src="/images/icons/icon-72x72.png" alt="olx.com.pk">
+                <h4 class="font-weight-bold ">Pakistan's Largest Marketplace</h4> {{!--
+                <a href="/images/icons/icon-72x72.png"></a> --}}
             </div>
 
-
-
-            <footer class="footer">
-                <p>&copy; 2018 OLX </p>
-            </footer>
-
         </div>
+        {{!--
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <form method="GET" action="/users/search:ser">
+                                <input type="text" class="form-control input-lg" name="ser" placeholder="House Search" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info btn-lg" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+
+        <div class="row ">
+            {{#if success_msg}}
+            <div class="alert alert-success ">{{success_msg}}</div>
+            {{/if}} {{#if error_msg}}
+            <div class="alert alert-danger ">{{error_msg}}</div>
+            {{/if}} {{#if error}}
+            <div class="alert alert-danger ">{{error}}</div>
+            {{/if}} {{{body}}} {{!--
+            <div class="col-lg-12 ">
+
+            </div> --}}
+        </div>
+
+
+        <footer class="footer ">
+            <p class="text-muted" href="#">&copy; 2018 OLX </p>
+        </footer>
+
+    </div>
 
 </body>
 
-<script src="/serviceindex.js"></script>
+<script src="/serviceindex.js "></script>
 
 </html>

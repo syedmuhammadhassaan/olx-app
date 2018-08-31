@@ -1,6 +1,9 @@
 <h2 class="page-header">Submit an Add</h2>
 
-<form class="form-horizontal" method="POST" action="/users/prop" enctype="multipart/form-data">
+{{!-- {{{#if errors}} {{#each errors}}
+<div class="alert alert-danger">{{msg}}</div>
+{{/each}} {{/if}} enctype="multipart/form-data" --}}
+<form method="POST" action="/users/prop/submit">
 
     <div class="form-group">
         <label for="adtitle" class="cols-sm-2 control-label">Ad Title</label>
@@ -28,7 +31,7 @@
         <label for="Ad Description" class="cols-sm-2 control-label">Ad Description</label>
         <div class="cols-sm-10">
             <div class="">
-                <textarea class="form-control" rows="5" placeholder="Ad Description"></textarea>
+                <textarea name="txtarea" class="form-control" rows="5" placeholder="Ad Description"></textarea>
             </div>
         </div>
     </div>

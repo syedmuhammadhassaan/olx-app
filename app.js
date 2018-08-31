@@ -17,18 +17,8 @@ var bcrypt = require("bcryptjs");
 var localStrategy = require("passport-local").Strategy;
 var mongo = require("mongodb");
 var mongoose = require("mongoose");
-var options = {
-  keepAlive: 300000,
-  connectTimeoutMS: 30000,
-  useNewUrlParser: true
-};
-var mongodbUri = "mongodb://hassan:hassan123@ds135952.mlab.com:35952/loginapp";
-mongoose.connect(
-  mongodbUri,
-  options
-);
+mongoose.connect("mongodb://localhost/loginapp");
 var db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // var publicPath = path.join(__dirname, "/public");
 
@@ -86,6 +76,11 @@ app.use(
     }
   })
 );
+//mongodb
+app.use(function(req, res, next) {
+  req.db = db;
+  next();
+});
 
 //connect flash
 app.use(flash());
