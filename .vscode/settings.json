@@ -1,14 +1,1 @@
-{
-  // Controls if the editor should automatically format the line after typing
-  "beautify.onSave": true,
-
-  "editor.formatOnSave": true,
-
-  // You can auto formate any files based on extensions type.
-  "beautify.JSfiles": ["js", "json", "jsbeautifyrc", "jshintrc", "ts"],
-  "editor.quickSuggestions": {
-    "comments": false, // <- no 24x7 IntelliSense in comments
-    "strings": true, // but in strings and the other parts of source files
-    "other": true
-  }
-}
+{}
