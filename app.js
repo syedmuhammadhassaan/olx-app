@@ -7,20 +7,18 @@ var expressValidator = require('express-validator')
 var flash = require('connect-flash')
 var session = require('express-session')
 var passport = require('passport')
+// var Grid = require('gridfs-stream')
+var methodOverride = require('method-override')
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/loginapp')
+var db = mongoose.connection
+// var crypto = require('crypto')
 // var multer = require('multer')
 // var GridFsStorage = require('multer-gridfs-storage')
-var Grid = require('gridfs-stream')
-var methodOverride = require('method-override')
-// var crypto = require('crypto')
-
 // var bcrypt = require('bcryptjs')
 // var localStrategy = require('passport-local').Strategy
 // var mongo = require('mongodb')
-var mongoose = require('mongoose')
-mongoose.connect('mongodb:// localhost/loginapp')
-var db = mongoose.connection
-
-//  var publicPath = path.join(__dirname, '/public')
+// var publicPath = path.join(__dirname, '/public')
 
 var routes = require('./routes/index')
 var users = require('./routes/users')
@@ -28,12 +26,12 @@ var users = require('./routes/users')
 // init app
 
 var app = express()
-let gfs
+// let gfs
 
-db.once('open', function () {
-  gfs = Grid(db, mongoose.mongo)
-  gfs.collection('uploads')
-})
+// db.once('open', function () {
+//   gfs = Grid(db, mongoose.mongo)
+//   gfs.collection('uploads')
+// })
 
 //  app.use(express.static('public'))
 // multer storage
@@ -65,14 +63,17 @@ app.use(passport.session())
 app.use(
   expressValidator({
     errorFormatter: function (param, msg, value) {
-      var namespace = param.split('.'),
-        root = namespace.shift(),
-        formParam = root
+      var namespace = param.split('.')
+      var root = namespace.shift()
+      var formParam = root
 
       while (namespace.length) {
         formParam += '[' + namespace.shift() + ']'
       }
-      return { param: formParam, msg: msg, value: value }
+      return {
+        param: formParam,
+        msg: msg,
+        value: value }
     }
   })
 )
@@ -97,7 +98,7 @@ app.use(function (req, res, next) {
 app.use('/', routes)
 app.use('/users', users)
 // set port
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 3001)
 app.use(express.static(path.join(__dirname, '/')))
 //  app.use('/', express.static(publicPath))
 app.listen(app.get('port'), function () {

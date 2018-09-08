@@ -1,43 +1,41 @@
 var express = require('express')
 var router = express.Router()
 var passport = require('passport')
-var path = require('path')
+// var path = require('path')
 var LocalStrategy = require('passport-local').Strategy
-var multer = require('multer')
-var GridFsStorage = require('multer-gridfs-storage')
+// var multer = require('multer')
+// var GridFsStorage = require('multer-gridfs-storage')
 var User = require('../models/user')
 var Ad = require('../models/user')
-var crypto = require('crypto')
-// var mongo = require('mongodb')
-// var url = 'mongodb:// localhost'
-// var assert = require('assert')
+
+// var crypto = require('crypto')
 
 //  var mongodbUri = 'mongodb:// hassan:hassan123@ds135952.mlab.com:35952/loginapp'
-var storage = new GridFsStorage({
-  url: 'mongodb:// localhost/loginapp',
-  //  url: mongodbUri,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err)
-        }
-        const filename = buf.toString('hex') + path.extname(file.originalname)
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'uploads'
-        }
-        resolve(fileInfo)
-      })
-    })
-  }
-})
-const prop = multer({ storage })
+// var storage = new GridFsStorage({
+//   url: 'mongodb:// localhost/loginapp',
+//   //  url: mongodbUri,
+//   file: (req, file) => {
+//     return new Promise((resolve, reject) => {
+//       crypto.randomBytes(16, (err, buf) => {
+//         if (err) {
+//           return reject(err)
+//         }
+//         const filename = buf.toString('hex') + path.extname(file.originalname)
+//         const fileInfo = {
+//           filename: filename,
+//           bucketName: 'uploads'
+//         }
+//         resolve(fileInfo)
+//       })
+//     })
+//   }
+// })
+// const prop = multer({ storage })
 
-router.post('/prop', prop.single('file'), function (req, res) {
-  //  res.json({ file: req.file })
-  res.redirect('/users/prop')
-})
+// router.post('/prop', prop.single('file'), function (req, res) {
+//   //  res.json({ file: req.file })
+//   res.redirect('/users/prop')
+// })
 
 router.get('/register', function (req, res) {
   res.render('register')

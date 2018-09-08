@@ -1,11 +1,12 @@
+/* global Ad */
 var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
 
 var UserSchema = mongoose.Schema(
   {
     username: {
-      type: String,
-      index: true
+      type: String
+      // index: true
     },
     password: {
       type: String
@@ -16,14 +17,15 @@ var UserSchema = mongoose.Schema(
     name: {
       type: String
     }
-  },
-  { collection: 'users' }
+  }
+  // { collection: 'users' }
 )
 var User = (module.exports = mongoose.model('User', UserSchema))
 
 var adSchema = mongoose.Schema(
   {
-    adtitle: { type: String, index: true },
+    adtitle: { type: String 
+    },
     category: {
       type: String
     },
@@ -42,15 +44,15 @@ var adSchema = mongoose.Schema(
   } // { collection: 'ad' }
 )
 
-var Ad = (module.exports = mongoose.model('ad', adSchema))
+var Ad = (module.exports = mongoose.model('Ad', adSchema))
 
 module.exports.createUser = function (newUser, callback) {
   bcrypt.genSalt(10, function (err, salt) {
     bcrypt.hash(newUser.password, salt, function (err, hash) {
       newUser.password = hash
       newUser.save(callback)
-      if (err) throw err
       //  Store hash in your password DB.
+      if (err) throw err
     })
     if (err) throw err
   })
@@ -73,7 +75,7 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
 }
 module.exports.createAd = function (newAd, callback) {
   newAd.save(callback)
-  console.log(Ad)
+  // console.log(Ad)
 }
 
 //  module.exports.findAll = function (username, callback) {

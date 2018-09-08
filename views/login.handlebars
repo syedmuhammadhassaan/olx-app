@@ -52,8 +52,8 @@
 
 
 
-    {{!--
-    <section class="get">
+    
+    {{!-- <section class="get">
         <h3>Get Data</h3>
         <a href="/views/login"></a>
         {{#each items}}
@@ -66,21 +66,43 @@
             <div>province:{{this.province}}</div>
         </article>
         {{/each}}
-    </section> --}}
+    </section>  --}}
 </form>
 
-<div class="container-fluid pre-scrollable "> {{#each items}} {{!--
-    <div class="well"> --}}
-        <div class="row  well media">
+  {{#each items}}
+
+      <div class="media">
+        
+      	<a class="pull-left" href="#">
+    		<img class="media-object" src="http://placekitten.com/150/150">
+  		</a>
+  		<div class="media-body">
+    		<h4 class="media-heading">{{this.adtitle}}</h4>
+          <p class="text-right">By {{this.name1}}</p>
+          <p>{{this.category}}</p>
+          <p>{{this.txtarea}}</p>
+          <p>{{this.name1}}</p>
+        </div>
+
+    </div>
+  
+         {{/each}} 
+
+{{!-- <ul class="container-fluid "> 
+    <div class="well">
+        <li class="row  well media">
             <a class="pull-left" href="#">
-                <img class="media-object" src="/images/icons/icon-128x128.png">
+                <img class="media-object" src="/images/icons/icon-144x144.png">
             </a>
 
-            <div class="">
-                <h3 class="text-capitalize font-weight-bold">{{this.adtitle}}</h3>
-                <div class="text-capitalize "> {{this.category}}</div>
-
+            <div class="col-sm-4" >
+                <h3 class="text-capitalize text-dark">{{this.adtitle}}</h3>
+                <small class="text-capitalize "> {{this.category}}</small>
+            </div>
                 <br>
+                <div class style="background-color:yellow;">
+         
+                  
                 <div class="text-capitalize "> {{this.txtarea}}</div>
 
                 <br>
@@ -90,6 +112,10 @@
                 <div class="text-capitalize ">{{this.cell}}</div>
 
                 <br>
-            </div>
-        </div>
-        {{/each}} </div>
+                  
+                </div>
+                
+            
+        </li>
+        
+</ul>         --}}

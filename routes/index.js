@@ -1,8 +1,11 @@
 var express = require('express')
 var router = express.Router()
 var mongo = require('mongodb')
-var url = 'mongodb:// localhost'
+var url = 'mongodb://localhost'
 var assert = require('assert')
+// mongoose.connect('mongodb:// localhost/loginapp')
+
+// var client=mongoose.connection
 
 router.get('/', ensureAuthenticated, function (req, res) {
   res.render('index')
@@ -24,11 +27,13 @@ router.get('/users/login', function (req, res, next) {
       var db = client.db('loginapp')
       assert.strictEqual(null, err)
 
-      var cursor = db.collection('ad').find()
+      var cursor = db.collection('ads').find()
+
       cursor.forEach(
         function (doc, err) {
           resultArray.push(doc)
-          //  console.log(doc)
+          if (err) throw err
+          // console.log(doc);
         },
         function () {
           client.close()
