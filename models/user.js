@@ -1,4 +1,4 @@
-/* global Ad */
+
 var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
 
@@ -24,7 +24,7 @@ var User = (module.exports = mongoose.model('User', UserSchema))
 
 var adSchema = mongoose.Schema(
   {
-    adtitle: { type: String 
+    adtitle: { type: String
     },
     category: {
       type: String
@@ -38,7 +38,7 @@ var adSchema = mongoose.Schema(
     cell: {
       type: String
     },
-    province: {
+    price: {
       type: String
     }
   } // { collection: 'ad' }
@@ -75,7 +75,7 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
 }
 module.exports.createAd = function (newAd, callback) {
   newAd.save(callback)
-  // console.log(Ad)
+  console.log(Ad)
 }
 
 //  module.exports.findAll = function (username, callback) {

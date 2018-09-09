@@ -1,3 +1,4 @@
+/* global window */
 var express = require('express')
 var router = express.Router()
 var passport = require('passport')
@@ -7,6 +8,9 @@ var LocalStrategy = require('passport-local').Strategy
 // var GridFsStorage = require('multer-gridfs-storage')
 var User = require('../models/user')
 var Ad = require('../models/user')
+var mongo=require('mongodb')
+var url= ('mongodb://localhost')
+
 
 // var crypto = require('crypto')
 
@@ -91,7 +95,7 @@ router.post('/prop/submit', function (req, res) {
   var txtarea = req.body.txtarea
   var name1 = req.body.name1
   var cell = req.body.cell
-  var province = req.body.province
+  var price = req.body.price
 
   req.checkBody('adtitle', 'Title is Required').notEmpty()
   req.checkBody('category', 'Category is Required').notEmpty()
@@ -108,7 +112,7 @@ router.post('/prop/submit', function (req, res) {
       txtarea: txtarea,
       name1: name1,
       cell: cell,
-      province: province
+      price: price
     })
     Ad.createAd(newAd, function (err, ad) {
       if (err) throw err
@@ -171,30 +175,67 @@ router.get('/prop', function (req, res) {
   res.render('prop')
 })
 
-// router.get('/search/:ser', function (req, res, next) {
-//   var resultArray = []
-//   const { ser } = req.params
-//   mongo.connect(
-//     url,
-//     function (err, client) {
-//       var db = client.db('loginapp')
-//       assert.strictEqual(null, err)
-//       var cursor = db.collection('ad').find({ adtitle: { $regex: 123 } })
-//       cursor.forEach(
-//         function (doc, err) {
-//           if (err) throw err
-//           resultArray.push(doc)
-//           console.log(resultArray)
-//         },
 
-//         function () {
-//           client.close()
-//           //  res.json(data)
-//           res.render('login', { items: resultArray })
-//         }
-//       )
-//     }
-//   )
+
+
+router.get('/search', function (req, res, next) {
+ 
+  var txt=(req.query.ser)
+ 
+  mongo.connect(url,function (err,client) {
+  if (err) throw err
+  resultArray=[]
+  db=client.db('loginapp')
+  var cursor = db.collection('ads').find({ adtitle: { $regex: txt } })
+  cursor.forEach(
+          function (doc, err) {
+            if (err) throw err
+            resultArray.push(doc)
+            console.log(resultArray)
+          },
+  function(){
+    client.close()
+    res.render('login', { items: resultArray })
+    // console.log(resultArray)
+  }
+  
+)
+})
+})
+
+
+  // if (req.query.ser){
+  //   const regex=new RegExp(escapeRegex(req.query.ser),'gi')
+    
+  // }
+
+  // var resultArray = []
+  // const { ser } = req.params
+  // mongo.connect(
+  //   url,
+  //   function (err, client) {
+  //     var db = client.db('loginapp')
+  //     assert.strictEqual(null, err)
+  //     var cursor = db.collection('ads').find({ adtitle: { $regex: 123 } })
+  //     cursor.forEach(
+  //       function (doc, err) {
+  //         if (err) throw err
+  //         resultArray.push(doc)
+  //         console.log(resultArray)
+  //       },
+
+  //       function () {
+  //         client.close()
+  //         //  res.json(data)
+  //         res.render('login', { items: resultArray })
+  //       }
+  //     )
+  //   }
+  // )
+
+
+
+
 
 //   //    const { ser } = req.params
 //   //    console.log(req.params)

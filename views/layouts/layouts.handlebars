@@ -1,12 +1,35 @@
-<html>
+<html lang="en">
 
 <head>
+    <script>
+  window.addEventListener("load", function(event) {
+    console.log("All resources finished loading!");
+  });
+</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" > 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" href="/images/icons/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152x152.png">
+    <!-- icon in the highest resolution we need it for -->
+    <link rel="icon" sizes="192x192" href="/images/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- reuse same icon for Safari -->
+    <link rel="apple-touch-icon" href="/images/icons/icon-192x192.png">
 
+    <!-- multiple icons for IE -->
+    <link rel="icon" sizes="192x192" href="/images/icons/icon-192x192.png">
+    {{!-- <meta name="msapplication-square310x310logo" content="/images/icons/icon-192x192"> --}}
+    <meta name="theme-color" content="#db5945"> 
     <title>Free Classified Ad for Houses in Pakistan</title>
     
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -16,10 +39,11 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+{{!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/> --}}
 
 
     <link rel="stylesheet" href="/public/css/style.css" />
@@ -33,7 +57,26 @@
     <!-- Make sure theme-color is defined -->
     {{!--
     <meta name="theme-color" content="#536878"> --}}
-
+<script>
+   
+     function addToFavorites()
+    {
+      {{#if user}}
+        if (window.external)
+        {
+        window.external.AddFavorite(urlAddress,pageName)
+        }
+        else
+        { 
+        alert("Sorry! Your browser doesn't support this function.");
+        }
+          {{else}}
+          { 
+        alert("Sorry! Please Login First!!");
+        }
+        {{/if}}
+    }
+</script>
 </head>
 
 
@@ -50,10 +93,19 @@
                     </li>
                     <li role="presentation">
                         <a href="/users/logout">Logout</a>
-                        {{!-- </li>
+                    </li>
                     <li role="presentation">
-                        <a href="/users/register">property</a>
-                    </li> --}} {{else}}
+                        <a href="/">Hello {{user.name}}</a>
+                    </li> 
+                      <li role="presentation">
+                           <a href="#">
+                        <span class="glyphicon glyphicon-bell">
+                        {{!-- <i class="glyphicon glyphicon-bell"> --}}
+                           </a>
+                        </i>
+                        {{!-- </span> --}}
+                    </li> 
+                    {{else}}
                     <li role="presentation">
                         <a href="/users/login">Login</a>
                     </li>
@@ -66,23 +118,23 @@
                 </ul>
             </nav>
             <div>
-                <img src="/images/icons/icon-72x72.png" alt="olx.com.pk">
-                <h4 class="font-weight-bold ">Pakistan's Largest Marketplace</h4> {{!--
-                <a href="/images/icons/icon-72x72.png"></a> --}}
+                <a href="/users/login"><img src="/images/icons/icon-72x72.png" alt="olx.com.pk"></a> 
+                <h4 class="font-weight-bold ">Pakistan's Largest Marketplace</h4> 
+               
             </div>
 
         </div>
-        {{!--
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
 
                     <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <form method="GET" action="/users/search:ser">
-                                <input type="text" class="form-control input-lg" name="ser" placeholder="House Search" />
+                        <div class="input-group col-sm-12">
+                            <form method="GET" action="/users/search">
+                                <input type="text" class="form-control" name="ser" placeholder="House Search"/>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-info btn-lg" type="submit">
+                                    <button class="btn btn-info" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
                                     </button>
                                 </span>
@@ -91,7 +143,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <div class="row ">
             {{#if success_msg}}

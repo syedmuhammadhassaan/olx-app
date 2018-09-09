@@ -1,13 +1,10 @@
-/* global caches,fetch,self */
+/* global caches,fetch,self,document */
 var cacheName = 'my-demo-app_04'
 var dataCacheName = 'my-demo-app_data_03'
 
 var filesToCache = [
   '/serviceindex.js',
-  //  '/serviceworker.js',
-  '/public/css/bootstrap.css',
   '/public/css/style.css',
-  '/public/js/bootstrap.js',
   '/app.js',
   '/manifest.json',
   '/views/layouts/layouts.handlebars',
@@ -20,7 +17,6 @@ var filesToCache = [
   '/models/user.js',
   '/'
 ]
-
 self.addEventListener('install', function (e) {
   console.log('[ServiceWorker] Install')
   e.waitUntil(
@@ -63,6 +59,44 @@ self.addEventListener('fetch', function (event) {
     })
   )
 })
+
+
+self.addEventListener('beforeinstallprompt', function (e) {
+  // log the platforms provided as options in an install prompt
+  console.log(e.platforms) // e.g., ["web", "android", "windows"]
+  e.userChoice.then(function (outcome) {
+    console.log(outcome) // either "accepted" or "dismissed"
+  }, function (err) {
+    if (err) throw err
+  })
+})
+
+// let deferredPrompt
+
+// self.addEventListener('beforeinstallprompt', (e) => {
+//   // Prevent Chrome 67 and earlier from automatically showing the prompt
+//   e.preventDefault()
+//   // Stash the event so it can be triggered later.
+//   deferredPrompt = e
+// })
+
+// var d = document.getElementById('btnAdd')
+// d.addEventListener('click', (e) => {
+//   // hide our user interface that shows our A2H button
+//   document.getElementById('btnAdd').style.display = 'none'
+//   // Show the prompt
+//   prompt()
+//   // Wait for the user to respond to the prompt
+//   deferredPrompt.userChoice
+//     .then((choiceResult) => {
+//       if (choiceResult.outcome === 'accepted') {
+//         console.log('User accepted the A2HS prompt')
+//       } else {
+//         console.log('User dismissed the A2HS prompt')
+//       }
+//       deferredPrompt = null
+//     })
+// })
 
 //  console.log('[ServiceWorker] Fetch', e.request.url)
 //  if (e.request.url.startsWith('http:// localhost:3000')) {

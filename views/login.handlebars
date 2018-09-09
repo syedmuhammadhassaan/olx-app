@@ -1,6 +1,8 @@
-<h2 class="page-loader">Login</h2>
+<h2 class="page-loader">OLX</h2>
 <form method="POST" action="/users/Login">
-
+     {{#if user}}
+    <P>pakistan's Largest Marketplace</P>
+     {{else}}
     <div style="margin-bottom: 25px" class="input-group">
         <span class="input-group-addon">
             <i class="glyphicon glyphicon-user"></i>
@@ -49,7 +51,8 @@
             </div>
         </div>
     </div>
-
+     {{/if}}
+   
 
 
     
@@ -63,25 +66,28 @@
             <div>txtarea:{{this.txtarea}}</div>
             <div>name:{{this.name}}</div>
             <div>cell:{{this.cell}}</div>
-            <div>province:{{this.province}}</div>
+            <div>price:{{this.price}}</div>
         </article>
         {{/each}}
     </section>  --}}
 </form>
+   
 
   {{#each items}}
 
       <div class="media">
-        
+      
       	<a class="pull-left" href="#">
-    		<img class="media-object" src="http://placekitten.com/150/150">
+    		<img class="media-object" src="/images/icons/icon-152x152.png" alt="olx.com.pk">
   		</a>
   		<div class="media-body">
-    		<h4 class="media-heading">{{this.adtitle}}</h4>
+    		<h4 class="text-uppercase a">{{this.adtitle}}</h4>
           <p class="text-right">By {{this.name1}}</p>
           <p>{{this.category}}</p>
           <p>{{this.txtarea}}</p>
-          <p>{{this.name1}}</p>
+          <span>{{this.cell}}</span>
+          <span class="bottom-right">{{this.price}}</span>
+          </a>
         </div>
 
     </div>
