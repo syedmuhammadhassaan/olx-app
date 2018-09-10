@@ -40,6 +40,9 @@ var adSchema = mongoose.Schema(
     },
     price: {
       type: String
+    },
+    imgSrc: {
+      type: String
     }
   } // { collection: 'ad' }
 )
@@ -75,7 +78,7 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
 }
 module.exports.createAd = function (newAd, callback) {
   newAd.save(callback)
-  console.log(Ad)
+  // console.log(Ad)
 }
 
 //  module.exports.findAll = function (username, callback) {

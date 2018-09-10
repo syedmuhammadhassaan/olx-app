@@ -7,11 +7,18 @@ var expressValidator = require('express-validator')
 var flash = require('connect-flash')
 var session = require('express-session')
 var passport = require('passport')
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+  cloud_name: 'dil4s3nc7', 
+  api_key: '125411538364795', 
+  api_secret: 'jLspbEfkysD5AZVBYenVXOWn4Ho' 
+  })
 // var Grid = require('gridfs-stream')
 var methodOverride = require('method-override')
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/loginapp')
 var db = mongoose.connection
+
 // var crypto = require('crypto')
 // var multer = require('multer')
 // var GridFsStorage = require('multer-gridfs-storage')
@@ -92,7 +99,7 @@ app.use(function (req, res, next) {
   res.locals.error_msg = req.flash('error_msg')
   res.locals.error = req.flash('error')
   res.locals.user = req.user || null
-  next()
+   next()
 })
 
 app.use('/', routes)
